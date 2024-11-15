@@ -1,0 +1,276 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #0E6066;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+
+  /* background-size: cover; Ensures the image covers the entire background */
+  /* background-position: center; */
+  font-weight: 400;
+  line-height: 1.666;
+  /* background: #c9d1cc; */ /* Remove this line */
+  background-color: #0E6066;
+  color: #061302;
+}
+
+header {
+  background-color: #0E6066;
+  margin: auto -16px;
+  padding: 16px 32px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+header h1 {
+  color: white;
+  font-family: "McLaren", cursive;
+  font-weight: 200;
+}
+/* Card Container */
+.dictionary {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 4rem auto;
+  max-width: 90%;
+}
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  width: 100%;
+  transition: box-shadow 0.3s ease, background-color  0.3s ease; /* Added transition for background-color */
+  text-align: center;
+ 
+   /* Default color before hover */
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  background-color: #f0c7a4;  /* Hover color */
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #333; /* Corrected text color */
+}
+
+.emoji {
+  font-size: 48px;
+}
+
+.mode {
+  
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 8px; /* Space between emoji and mode */
+  color: #151413;
+}
+
+/* Card Item Styling */
+.card-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95em;
+  gap: 4px; /* Reduced spacing between labels and values */
+}
+
+.card-item strong {
+  margin-right: 4px;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+  .card {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 12px;
+    font-size: 0.9em;
+  }
+
+  .mode {
+    font-size: 1em;
+  }
+
+  .card-item {
+    font-size: 0.9em;
+  }
+}
+
+
+/* Feature Card Container */
+/* Container for feature cards */
+
+
+/* Individual Feature Card Styling */
+/* Container for feature cards */
+
+
+.feature-section {
+  background-color: #0E6066;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Distributes cards across the full width */
+  padding: 20px;
+  line-height: 2;
+  gap: 20px; /* Adds space between cards */
+  width: 100%; /* Full-width container */
+  margin: 0 auto; /* Centers container */
+}
+
+
+
+/* Individual Feature Card Styling */
+.feature-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  width: calc(33.333% - 40px); /* Makes three cards fit side by side with gap */
+  text-align: center;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background-color: #fff;
+}
+
+/* Hover Effect */
+.feature-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+/* Image Styling for Card */
+.feature-card img {
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+/* Keynote Title */
+.feature-card .feature-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 8px 0;
+  color: #2ec2b0;
+}
+
+/* Description Styling */
+.feature-card .feature-description {
+  font-size: 1em;
+  color: #061302;
+  margin-top: 8px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .feature-card {
+    width: calc(50% - 40px); /* Two cards side by side on medium screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .feature-card {
+    width: 100%; /* Single card full-width on small screens */
+    margin: 0 auto;
+  }
+}
+
+/************ Banner Css ************/
+
+
+.banner {
+  margin: 0;
+  padding: 0;
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background: #0E6066;
+
+  width: 100vw; /* Ensures full viewport width */
+  position: relative;
+}
+
+.banner .tagline {
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  padding: 8px 10px;
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3);
+  background: #f1ecca;
+  border: 1px solid rgba(207, 207, 35, 0.5);
+  border-radius: 10px;
+  font-size: 20px;
+  /* margin-bottom: 16px; */
+  display: inline-block;
+}
+.banner h1 {
+  font-size: 65px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 2;
+  margin-bottom: 20px;
+  display: block;
+}
+.banner p {
+  color: #123524;
+  color: #a99d3d;
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  line-height: 1.5em;
+  width: 50%;  /* Set width to 50% of the container */
+  margin: 0;   /* No margin needed for left alignment */
+  text-align: left;  /* Align the text to the left */
+  text-align: justify;
+  word-wrap: break-word; /* Ensure the text breaks and continues on the next line if needed */
+}
+
+
+.banner button {
+  background-color: #AFEEEE;
+  color: #341018;
+  font-weight: 500;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-top: 60px;
+  letter-spacing: 0.8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* Center content horizontally */
+  border-radius: 10px;
+  padding: 10px 20px;  /* Adds space around the text */
+  margin-bottom: 215px;
+}
+
+.banner button svg {
+  font-size: 45px;
+  margin-left: 10px;
+  transition: 0.3s ease-in-out;
+  line-height: 1;
+  color: #341018;
+}
+
+.banner button:hover svg {
+  margin-left: 25px;
+  margin-right: 10px;
+}
+
+.banner img {
+  width: 95%; /* Set the width to 45% */
+  height: auto; /* Maintain the aspect ratio */
+  object-fit: contain; /* Make sure the image scales well within the given width */
+}
+
