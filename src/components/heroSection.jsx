@@ -63,7 +63,7 @@ export const Banner = () => {
               {({ isVisible }) =>
               <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
                 <span className="tagline">Welcome To EcoRoute</span>
-                <h1>{`Eco`} <span className="txt-rotate" dataPeriod="1000" data-rotate='[ "Options", "Insights", "Choices" ]'><span className="wrap">{text}</span></span></h1>
+                <h1>{`Eco`} <span className="txt-rotate" dataperiod="1000" data-rotate='[ "Options", "Insights", "Choices" ]'><span className="wrap">{text}</span></span></h1>
                   <p>EcoRoute website helps you make environmentally conscious travel choices by calculating CO2 emissions for different vehicles based on your location.
                   Click now to start your eco-friendly journey!
                   </p>

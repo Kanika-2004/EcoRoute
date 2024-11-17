@@ -5,18 +5,18 @@ import TextField from "@mui/material/TextField";
 import LoadingButton from "@mui/lab/LoadingButton";
 import Results from "./ResultsDisplay";
 const CO2emissionFactors = {
-  PetrolCar: 275.73,
-  DieselCar: 271.02,
-  ElectricCar: 277.25,
-  ElectricBus: 275.51,
-  DieselBus: 271.67,
-  PetrolBus:271.05,
-  PetrolMotorcycle: 278.99,
   DieselMotorcycle: 268.35,
-  ElectricMotorcycle: 270.18,
-  DieselTruck: 274.91,
-  PetrolTruck: 269.98,
-  ElectricTruck: 276.14
+PetrolTruck: 269.98,
+ElectricMotorcycle: 270.18,
+DieselCar: 271.02,
+PetrolBus: 271.05,
+DieselBus: 271.67,
+PetrolCar: 275.73,
+DieselTruck: 274.91,
+ElectricBus: 275.51,
+ElectricCar: 277.25,
+ElectricTruck: 276.14,
+PetrolMotorcycle: 278.99,
 };
 
 const NOXemissionFactors = {
@@ -137,25 +137,25 @@ async function calculateDist(start, end, mode, actualMode) {
 
   return {
     distance: (route.summary.distance / 1000).toFixed(2),
-    duration: Math.round(route.summary.duration / 60), // Convert seconds to minutes and round to integer
+    duration: (route.summary.duration / 60).toFixed(2), // Convert seconds to minutes and round to integer
     mode: actualMode,
   };
 }
 
 async function calculateForAllModes(locations) {
-  const modes = {
-    PetrolCar: "driving-car",
-  DieselCar: "driving-car",
-  ElectricCar:"driving-car",
-  ElectricBus:"driving-hgv",
-  DieselBus: "driving-hgv",
-  PetrolBus:"driving-hgv",
-  PetrolMotorcycle: "cycling-regular",
-  DieselMotorcycle: "cycling-regular",
-  ElectricMotorcycle:"cycling-regular",
-  DieselTruck: "driving-hgv",
-  PetrolTruck: "driving-hgv",
-  ElectricTruck: "driving-hgv"
+  const modes = { 
+PetrolTruck: "driving-hgv",
+DieselCar: "driving-car",
+PetrolBus: "driving-hgv",
+DieselBus: "driving-hgv",
+PetrolCar: "driving-car",
+DieselTruck: "driving-hgv",
+ElectricBus: "driving-hgv",
+ElectricCar: "driving-car",
+ElectricTruck: "driving-hgv",
+DieselMotorcycle: "cycling-regular",
+ElectricMotorcycle: "cycling-regular",
+PetrolMotorcycle:"cycling-regular"
   };
 
   const allResults = [];
@@ -176,8 +176,9 @@ function InputForm() {
   const [locations, setLocations] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [finalResult, setFinalResult] = useState([]);
-  const [error, setError] = useState(""); // State to hold the error message
-  // Function to handle input changes
+  const [error, setError] = useState(""); 
+  const [minimumCO2Mode, setMinimumCO2Mode] = useState(null);
+
   function handleChange(event) {
     const { name, value } = event.target;
     setPlace((prevPlace) => ({
@@ -185,7 +186,7 @@ function InputForm() {
       [name]: value,
     }));
     setFinalResult([]);
-    setError(""); // Reset error message on input change
+    setError(""); 
   }
 
   // Simulate form submission
@@ -230,8 +231,18 @@ function InputForm() {
           });
 
           console.log("total data is",totalData)
+         const sorteddata= totalData.sort((a, b) => {
+            if (a.duration === b.duration) {
+              return (a.pollutionAmount.emissiondata.co2.totalEmissions - b.pollutionAmount.emissiondata.co2.totalEmission);   
+         }         
+            return a.duration - b.duration;
+          });
 
-          setFinalResult(totalData);
+          
+          console.log("sorted data is",sorteddata)
+          setFinalResult(sorteddata);
+
+
 
         } catch (error) {
           console.error("Error fetching geocoding or calculating results:", error);
@@ -257,17 +268,17 @@ function InputForm() {
           height: "100vh",
         }}
       >
-        <div style={{fontWeight: 'bold', fontSize:'20px', color:'#123524'}}>Start Destination</div>
+        <div style={{fontWeight: 'bold', fontSize:'20px', color:'white'}}>Start Destination</div>
         <TextField
           name="start"
           onChange={handleChange}
           value={place.start}
           variant="outlined"
           placeholder="Place, City"
-          sx={{ width: "80%", maxWidth: "400px", marginBottom: "16px",backgroundColor: " #AFEEEE",borderRadius: "10px" }}
+          sx={{ width: "80%", maxWidth: "400px", marginBottom: "16px",backgroundColor: " #f1ecca",borderRadius: "10px" }}
         />
 
-        <div style={{fontWeight: 'bold', fontSize:'20px', color:'#123524'}}>End Destination</div>
+        <div style={{fontWeight: 'bold', fontSize:'20px', color:'white'}}>End Destination</div>
         <TextField
           name="end"
           
@@ -276,7 +287,7 @@ function InputForm() {
          
           variant="outlined"
           placeholder="Place, City"
-          sx={{ width: "80%", maxWidth: "400px", marginBottom: "16px",backgroundColor: " #AFEEEE",borderRadius: "10px" }}
+          sx={{ width: "80%", maxWidth: "400px", marginBottom: "16px",backgroundColor: " #f1ecca",borderRadius: "10px" }}
         />
         
 
@@ -290,10 +301,13 @@ function InputForm() {
             width: "100%",
             maxWidth: "400px",
             mt: 2,
-            backgroundColor: "#f1ecca", // Apply the custom color here
+            color: "white",
+            backgroundColor: "rgb(97,215,97)", 
+            fontWeight: "bold",
             "&:hover": {
-              backgroundColor: "#d4c08f",
-              marginBottom: "16px" // Optional: Hover effect for better user experience
+              color:"rgb(97,215,97)",
+              backgroundColor: "white",
+              marginBottom: "16px" 
             },
           }}
           onClick={handleSubmit}
@@ -305,24 +319,28 @@ function InputForm() {
       </Box>
 
       {finalResult.length > 0 && (
-        <dl className="dictionary" style={{ marginTop: "20px" }}> {/* Adjusted the margin to move results upwards */}
+        <dl className="dictionary" style={{ marginTop: "20px" }}> 
           {finalResult.map((resultTerm, index) => {
             let picture;
+            let link;
             switch (resultTerm.mode) {
               case "PetrolCar":
               case "DieselCar":
               case "ElectricCar":
                 picture = "🚗";
+                link="https://www.uber.com/in/en/?gad_source=1&gclid=Cj0KCQiAouG5BhDBARIsAOc08RTJrEibMjhAYyFu7dJM9KNQU8aCGfY8avHrk3rEUsM0xWqtsNq-lpAaAtezEALw_wcB"
                 break;
               case "DieselBus":
               case "PetrolBus":
                 case "ElectricBus":
                 picture = "🚌";
+                link="https://www.redbus.in/?gad_source=1&gclid=Cj0KCQiAouG5BhDBARIsAOc08RSwvmqCoxIF1T0dJnoKeNTuxsKuiV3UYPhyt0g8wUHMX_vKryR80hUaAlO6EALw_wcB"
                 break;
               case "DieselMotorcycle":
                 case "PetrolMotorcycle":
                   case "ElectricMotorcycle":
                 picture = "🏍️";
+                link="https://www.rapido.bike/"
                 break;
               case "DieselTruck":
                 case"PetrolTruck":
@@ -343,6 +361,8 @@ function InputForm() {
                 particulateEmissions={resultTerm?.pollutionAmount?.emissiondata?.particulate?.totalEmissions.toFixed(4)+" gm"}
                 time={resultTerm.duration+" min"}
                 image={picture}
+                link={link}
+                
               />
             );
           })}

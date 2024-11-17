@@ -166,13 +166,13 @@ header h1 {
   font-size: 1.5em;
   font-weight: bold;
   margin: 8px 0;
-  color: #2ec2b0;
+  color: green;
 }
 
 /* Description Styling */
 .feature-card .feature-description {
   font-size: 1em;
-  color: #061302;
+  color: black;
   margin-top: 8px;
 }
 
@@ -210,7 +210,8 @@ header h1 {
   letter-spacing: 0.8px;
   padding: 8px 10px;
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3);
-  background: #f1ecca;
+  background: whitesmoke;
+  color: green;
   border: 1px solid rgba(207, 207, 35, 0.5);
   border-radius: 10px;
   font-size: 20px;
@@ -218,6 +219,7 @@ header h1 {
   display: inline-block;
 }
 .banner h1 {
+  color: rgb(97,215,97);
   font-size: 65px;
   font-weight: 700;
   letter-spacing: 0.8px;
@@ -226,8 +228,7 @@ header h1 {
   display: block;
 }
 .banner p {
-  color: #123524;
-  color: #a99d3d;
+  color: whitesmoke;
   font-size: 18px;
   letter-spacing: 0.8px;
   line-height: 1.5em;
@@ -240,8 +241,8 @@ header h1 {
 
 
 .banner button {
-  background-color: #AFEEEE;
-  color: #341018;
+  background-color: rgb(99, 235, 99);
+  color: white;
   font-weight: 500;
   font-size: 20px;
   margin-left: 10px;
@@ -260,7 +261,7 @@ header h1 {
   margin-left: 10px;
   transition: 0.3s ease-in-out;
   line-height: 1;
-  color: #341018;
+  color: white;
 }
 
 .banner button:hover svg {

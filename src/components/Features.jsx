@@ -9,7 +9,9 @@ function Entry() {
           <img src={feature.image} alt={feature.title} />
           <div className="feature-title">{feature.title}</div>
           <div className="feature-description">{feature.description}</div>
-          <a href={feature.link}>Know More</a>
+          
+          <a href={feature.link} >Know More</a>
+         
         </div>
       ))}
     </div>
